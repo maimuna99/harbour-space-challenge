@@ -1,11 +1,13 @@
 
 const Footer=() => {
     return (
+        <>
         
-        <footer className="footer" style={{position:"fixed",backgroundColor:"white",height:"86.08px",bottom:"0",width:"100%",borderColor:"#DADADA",border:"1px", boxShadow:"0px -4px 5px 0px rgba(0,0,0,0.25)"}}>
+        {/* <br style="paddingTop:300px"/> */}
+        <footer className="footer"  >
             <div className="row" style={{ paddingTop:"22px", paddingLeft:"22px"}}>
                 <div className="col" >
-                    <p style={{fontWeight: "300",fontSize:"16px",color:"#535353", }}><span style={{fontWeight:"500"}}>Zeptolab</span><br/>Marketing Performance</p>
+                    <p style={{fontWeight:"300",fontSize:"16px",color:"#535353"}}><span style={{fontWeight:500}}>Zeptolab</span><br/>Marketing Performance</p>
                 </div>
                 <div className="col">
                     <p style={{fontWeight:"300",fontSize:"16px",color:"#535353"}}><span style={{fontWeight:500}}>Location</span><br/>Bangkok</p>
@@ -24,6 +26,7 @@ const Footer=() => {
                 </div>
             </div>
         </footer>
+        </>
     )
 };
 export default Footer;
