@@ -2,10 +2,12 @@
 import logo from '../images/Logo.png';
 import patternBox from '../images/Pattern-box.png';
 import icon from '../images/Icon.png';
-import React from "react";
+import React, { useEffect, useState } from "react";
 let count = 0;
 
 const Row1=() => {
+    //initiating usestates
+    const [abstract, setAbstract] = useState("");
     const now = new Date().toLocaleTimeString();
     let [time, setTime] = React.useState(now);
 
@@ -18,6 +20,24 @@ const Row1=() => {
     }
 
     setInterval(updateTime, 1000);
+
+    //initiating use state
+    useEffect(() => {
+        const url = "https://stage.harbour.space/api/v1/scholarship_pages/data-science-apprenticeship-zeptolab";
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url);
+                const json = await response.json();
+                console.log(json.meta.abstract);
+                setAbstract(json.meta.abstract);
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
+
+        fetchData();
+    }, []);
     
     return (
         <>
@@ -35,8 +55,7 @@ const Row1=() => {
                         A fully funded work-study program to launch your tech career 
                     </p>
                     <p className="col" style={{color: "#535353", maxWidth:"440px", fontSize:"22px", paddingTop:"40px", fontWeight:"300"}}>
-                        Harbour.Space has partnered with SCG to empower driven talent and eliminate the barriers to accessing exceptional education and career opportunities through a Masters Fellowship.  
-                    </p>
+                    {abstract}</p>
                     <p className="col" style={{color: "#535353", maxWidth:"440px",paddingTop:"40px", fontSize:"22px", fontWeight:"300"}}>
                         <span style={{textEmphasisStyle: "bold",fontWeight:"500"}}>Position: </span>
                         Marketing Performance

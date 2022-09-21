@@ -3,7 +3,7 @@ import './App.css';
 import React, { useEffect, useState } from "react";
 
 const App = () => {
-    const [scope, setScope] = useState("");
+    const [name, setName] = useState("");
 
     useEffect(() => {
         const url = "https://stage.harbour.space/api/v1/scholarship_pages/data-science-apprenticeship-zeptolab";
@@ -12,8 +12,8 @@ const App = () => {
             try {
                 const response = await fetch(url);
                 const json = await response.json();
-                console.log(json.scope);
-                setScope(json.scope);
+                console.log(json.name);
+                setName(json.name);
             } catch (error) {
                 console.log("error", error);
             }
@@ -24,7 +24,7 @@ const App = () => {
 
     return (
         <div>
-            <p>{scope}</p>
+            <p>{name}</p>
         </div>
     );
 };
