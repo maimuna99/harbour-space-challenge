@@ -1,5 +1,21 @@
 
+import React from "react";
+let count = 0;
+
 const Footer=() => {
+    const now = new Date().toLocaleTimeString();
+    let [time, setTime] = React.useState(now);
+
+    function updateTime(){
+        const newTime = new Date().toLocaleTimeString();
+        setTime(newTime);
+        count++;
+        console.log(count);
+        console.log(new Date().getMilliseconds());
+    }
+
+    setInterval(updateTime, 1000);
+    
     return (
         <>
         
@@ -22,7 +38,8 @@ const Footer=() => {
                     <p style={{fontWeight:"300",fontSize:"16px",color:"#535353" }}><span style={{fontWeight:"500"}}>Application deadline</span><br/>30 June 2020</p>
                 </div>
                 <div className="col">
-                    <p style={{fontWeight:"300",fontSize:"16px",color:"#535353" }}><span style={{fontWeight:"500"}}>Application closes in</span><br/>6 Day   :   22 Hrs   :   56 Min</p>
+                <p style={{fontWeight:"300",fontSize:"16px",color:"#535353" }}><span style={{fontWeight:"500"}}>Application closes in</span><br/>{time}</p>
+                    {/* <p style={{fontWeight:"300",fontSize:"16px",color:"#535353" }}><span style={{fontWeight:"500"}}>Application closes in</span><br/>6 Day   :   22 Hrs   :   56 Min{time}</p> */}
                 </div>
             </div>
         </footer>

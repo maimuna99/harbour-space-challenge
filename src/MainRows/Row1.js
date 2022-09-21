@@ -2,8 +2,23 @@
 import logo from '../images/Logo.png';
 import patternBox from '../images/Pattern-box.png';
 import icon from '../images/Icon.png';
+import React from "react";
+let count = 0;
 
 const Row1=() => {
+    const now = new Date().toLocaleTimeString();
+    let [time, setTime] = React.useState(now);
+
+    function updateTime(){
+        const newTime = new Date().toLocaleTimeString();
+        setTime(newTime);
+        count++;
+        console.log(count);
+        console.log(new Date().getMilliseconds());
+    }
+
+    setInterval(updateTime, 1000);
+    
     return (
         <>
         
@@ -52,7 +67,8 @@ const Row1=() => {
                     <div className="card" style={{width: "480px", height: "116px", marginTop: "27px"}}>
                         <div className="card-body">
                             <h5 className="card-title" style={{fontWeight: 500,fontSize: "16px",color: "#685DC5",padding: "5px"}}>Application closes in</h5>
-                            <p className="card-text" style={{color: "#535353", fontWeight: 300, fontSize: "27px"}}>6 Day  :  22 Hrs  :  56 Min  :  13 Seg </p>
+                            {/* <p className="card-text" style={{color: "#535353", fontWeight: 300, fontSize: "27px"}}>6 Day  :  22 Hrs  :  56 Min  :  13 Seg{time} </p> */}
+                            <p className="card-text" style={{color: "#535353", fontWeight: 300, fontSize: "27px"}}>{time} </p>
                         </div>
                     </div>
                         {/* <!-- secound card --> */}
@@ -86,7 +102,7 @@ const Row1=() => {
                                 </div>
                                 <div className="col" >
                                     {/* <!-- secound column --> */}
-                                    <h5 clclassNameass="card-title" style={{fontWeight: 300, fontSize: "16px", color: "#685DC5"}}>End Date</h5>
+                                    <h5 className="card-title" style={{fontWeight: 300, fontSize: "16px", color: "#685DC5"}}>End Date</h5>
                                     <p className="card-text" style={{color: "#535353", fontWeight: 300, fontSize: "16px"}}>3 Aug 2020</p>
                                 </div>
                             </div>
