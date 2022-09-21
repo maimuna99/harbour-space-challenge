@@ -1,6 +1,28 @@
+import React, { useEffect, useState } from "react";
 import PatternCircle from '../images/Pattern-circle.png';
 import boy from '../images/boy.png';
 const Row2=() => {
+    //initiating usestates
+    const [data,setData]= useState("");
+
+    //initiating use state
+    useEffect(() => {
+        const url = "https://stage.harbour.space/api/v1/scholarship_pages/data-science-apprenticeship-zeptolab";
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url);
+                const json = await response.json();
+                setData(json.scholarship.who_should_apply_text[0].data);
+
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <>
         <div className="container" >
@@ -18,9 +40,9 @@ const Row2=() => {
                         <br/>
                         apprenticeship
                     </p>
-                    <p className="col" style={{color:"#535353", maxWidth:"4790px",fontSize:"22px", paddingTop:"230px",fontWeight:"300"}}>Our scholarships
-                        are designed to give talented and driven young people from any background access to top-class education,
-                        experience and network. We offer a fully-funded master’s degree alongside an apprenticeship and a guaranteed job upon graduation.   
+                    <p className="col" style={{color:"#535353", maxWidth:"4790px",fontSize:"22px", paddingTop:"230px",fontWeight:"300"}}> {data}
+                        {/* Our scholarships are designed to give talented and driven young people from any background access to top-class education,
+                        experience and network. We offer a fully-funded master’s degree alongside an apprenticeship and a guaranteed job upon graduation.    */}
                     </p>
                 </div>
             </div>

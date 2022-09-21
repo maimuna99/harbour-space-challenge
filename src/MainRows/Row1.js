@@ -6,8 +6,10 @@ import React, { useEffect, useState } from "react";
 let count = 0;
 
 const Row1=() => {
-    //initiating usestates
+    //const [startDate, setStartDate]= useState("");
+    const [link,setLink] = useState("");
     const [abstract, setAbstract] = useState("");
+    const [name, setName] = useState("");
     const now = new Date().toLocaleTimeString();
     let [time, setTime] = React.useState(now);
 
@@ -15,8 +17,8 @@ const Row1=() => {
         const newTime = new Date().toLocaleTimeString();
         setTime(newTime);
         count++;
-        console.log(count);
-        console.log(new Date().getMilliseconds());
+       // console.log(count);
+        //console.log(new Date().getMilliseconds());
     }
 
     setInterval(updateTime, 1000);
@@ -29,8 +31,12 @@ const Row1=() => {
             try {
                 const response = await fetch(url);
                 const json = await response.json();
-                console.log(json.meta.abstract);
+                
                 setAbstract(json.meta.abstract);
+                setName(json.scholarship.name);
+                setLink(json.scholarship.program.link);
+                //setStartDate(json.scholarship.scholarship_start_date);
+
             } catch (error) {
                 console.log("error", error);
             }
@@ -47,9 +53,10 @@ const Row1=() => {
                 <div className="col-6">
                     <img src={icon} alt="icon"  style={{width:"206px", alignItems:"left", marginLeft:"260px", marginTop: "-80px",position:"absolute",zIndex:"0"}} />
                     <p  style={{ fontSize:"48px", fontWeight:"500",fontFamily:"Apercu Pro", color:"#685DC5"}}>
-                        Interaction Design 
+                        {/* Interaction Design 
                         <br/>
-                        Apprenticeship
+                        Apprenticeship */}
+                        {name}
                     </p>
                     <p className="col" style={{color: "#535353", textEmphasisStyle:"bold", maxWidth: "440px", fontSize: "22px"}}>
                         A fully funded work-study program to launch your tech career 
@@ -61,7 +68,7 @@ const Row1=() => {
                         Marketing Performance
                     </p>
                     <br/>
-                    <button style={{background:"#685DC5", borderRadius: "29px", border: "none", color:"white", height: "58px", width:"166px"}}>Apply Now</button>
+                    <button href={link} style={{background:"#685DC5", borderRadius: "29px", border: "none", color:"white", height: "58px", width:"166px"}}>Apply Now</button>
                 </div>{/* first column ends here */}
 
 

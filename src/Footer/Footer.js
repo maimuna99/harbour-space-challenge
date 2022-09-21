@@ -10,8 +10,8 @@ const Footer=() => {
         const newTime = new Date().toLocaleTimeString();
         setTime(newTime);
         count++;
-        console.log(count);
-        console.log(new Date().getMilliseconds());
+        //console.log(count);
+        //console.log(new Date().getMilliseconds());
     }
 
     setInterval(updateTime, 1000);
